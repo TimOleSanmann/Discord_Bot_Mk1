@@ -16,7 +16,10 @@ namespace Discord_Bot_Mk1
         {
             ChuckNorrisApiHandler chuckNorrisApiHandler = new ChuckNorrisApiHandler();
             string joke = await chuckNorrisApiHandler.GetJoke();
+            await Context.Channel.SendMessageAsync(Context.Channel.Name);
+
             await Context.Channel.SendMessageAsync(joke);
+
             var test = await Context.User.CreateDMChannelAsync();
             await test.SendMessageAsync("So, you like jokes? Of Course! You are a joke.");
 
