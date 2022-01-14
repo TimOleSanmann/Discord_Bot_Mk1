@@ -17,6 +17,13 @@ namespace Discord_Bot_Mk1
             ChuckNorrisApiHandler chuckNorrisApiHandler = new ChuckNorrisApiHandler();
             string joke = await chuckNorrisApiHandler.GetJoke();
             await Context.Channel.SendMessageAsync(Context.Channel.Name);
+            var user = Context.User as SocketGuildUser;
+            foreach(var role in user.Roles.ToList())
+            {
+                await Context.Channel.SendMessageAsync(role.Name);
+            }
+            
+
 
             await Context.Channel.SendMessageAsync(joke);
 
