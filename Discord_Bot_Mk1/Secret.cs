@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,15 @@ namespace Discord_Bot_Mk1
 {
     public class Secret
     {
+        
         public static string GetToken()
         {
-            return "";
+            var config = new ConfigurationBuilder()
+                        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                        .AddJsonFile("secrets.json")
+                        .Build();
+            var secret = config.GetSection("DiscordBotToken").Value;
+            return secret;
         }
     }
 }
