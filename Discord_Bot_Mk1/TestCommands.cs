@@ -29,7 +29,7 @@ namespace Discord_Bot_Mk1
             await ReplyAsync("Here is a Button!", components: builder.Build());
 
             var menueBuilder = new SelectMenuBuilder()
-                               .WithPlaceholder("Seelct an Option")
+                               .WithPlaceholder("Select an Option")
                                .WithCustomId("menu-1")
                                .WithMinValues(1)
                                .WithMaxValues(1)
@@ -39,6 +39,29 @@ namespace Discord_Bot_Mk1
            .WithSelectMenu(menueBuilder);
 
             await ReplyAsync("Choose?", components: builder.Build());
+
+
+            var embed = new EmbedBuilder
+            {
+                // Embed property can be set within object initializer
+                Title = "Hello world!",
+                Description = "I am a description set by initializer."
+            };
+            // Or with methods
+            embed.AddField("Field title",
+                "Field value. I also support [hyperlink markdown](https://example.com)!")
+                .WithAuthor(Context.Client.CurrentUser)
+                .WithFooter(footer => footer.Text = "I am a footer.")
+                .WithColor(Color.Blue)
+                .WithTitle("I overwrote \"Hello world!\"")
+                .WithDescription("I am a description.")
+                .WithUrl("https://example.com")
+                .WithImageUrl("https://static.wikia.nocookie.net/poke5forum/images/6/60/028_Pikachu_%26_Zachary_28_88_20150911143525422.jpg/revision/latest/scale-to-width-down/246?cb=20150911123651&path-prefix=de")
+                .WithThumbnailUrl("https://static.wikia.nocookie.net/poke5forum/images/6/60/028_Pikachu_%26_Zachary_28_88_20150911143525422.jpg/revision/latest/scale-to-width-down/246?cb=20150911123651&path-prefix=de")
+                .WithCurrentTimestamp();
+
+            //Your embed needs to be built before it is able to be sent
+            await ReplyAsync(embed: embed.Build());
 
         }
 
