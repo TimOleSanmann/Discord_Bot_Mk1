@@ -28,6 +28,18 @@ namespace Discord_Bot_Mk1
                           .WithButton(label: "Test", style: ButtonStyle.Link, url: "https://www.youtube.com/watch?v=-MJi7T4lX80");
             await ReplyAsync("Here is a Button!", components: builder.Build());
 
+            var menueBuilder = new SelectMenuBuilder()
+                               .WithPlaceholder("Seelct an Option")
+                               .WithCustomId("menu-1")
+                               .WithMinValues(1)
+                               .WithMaxValues(1)
+                               .AddOption("Option A", "opt-a", "This is A")
+                               .AddOption("Option B", "opt-b", "This is B");
+            builder = new ComponentBuilder()
+           .WithSelectMenu(menueBuilder);
+
+            await ReplyAsync("Choose?", components: builder.Build());
+
         }
 
        

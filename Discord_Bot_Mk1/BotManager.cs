@@ -31,6 +31,7 @@ namespace Discord_Bot_Mk1
             BotClient.Ready += BotReady;
 
             BotClient.ButtonExecuted += MyButtonHandler;
+            BotClient.SelectMenuExecuted += MyMenuHandler;
 
             await Task.Delay(-1);
         }
@@ -81,6 +82,12 @@ namespace Discord_Bot_Mk1
                     await component.RespondAsync($"{component.User.Mention} has clicked the button!");
                     break;
             }
+        }
+
+        public async Task MyMenuHandler(SocketMessageComponent arg)
+        {
+            var text = string.Join(", ", arg.Data.Values);
+            await arg.RespondAsync($"You have selected {text}");
         }
     }
 }
