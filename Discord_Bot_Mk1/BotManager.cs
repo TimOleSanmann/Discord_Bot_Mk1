@@ -30,6 +30,8 @@ namespace Discord_Bot_Mk1
             Commands.Log += BotLog;
             BotClient.Ready += BotReady;
 
+            BotClient.ButtonExecuted += MyButtonHandler;
+
             await Task.Delay(-1);
         }
 
@@ -66,6 +68,19 @@ namespace Discord_Bot_Mk1
             return new ServiceCollection()
                    .AddSingleton<TestCommands>()
                    .BuildServiceProvider();
+        }
+
+        public async Task MyButtonHandler(SocketMessageComponent component)
+        {
+            // We can now check for our custom id
+            switch (component.Data.CustomId)
+            {
+                // Since we set our buttons custom id as 'custom-id', we can check for it like this:
+                case "TheID":
+                    // Lets respond by sending a message saying they clicked the button
+                    await component.RespondAsync($"{component.User.Mention} has clicked the button!");
+                    break;
+            }
         }
     }
 }
